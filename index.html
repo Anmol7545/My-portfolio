@@ -52,15 +52,7 @@
           <article class="project-card project-featured">
             <div class="project-top"><span class="project-number">01 / AI + FINTECH</span><span class="project-arrow">↗</span></div>
             <div class="visual fraud-visual">
-              <div class="scan-grid"></div>
-              <div class="fraud-score">
-                <span>MODEL CONFIDENCE</span><strong>96.4<small>%</small></strong>
-                <div class="score-line"><i></i></div>
-                <b>TRANSACTION SECURE</b>
-              </div>
-              <div class="pulse pulse-one"></div>
-              <div class="pulse pulse-two"></div>
-              <span class="visual-tag">LIVE SIGNAL / 001</span>
+              <img src="assets/upi-fraud-photo.png" alt="Printed transaction records with a suspicious entry marked for review" loading="lazy">
             </div>
             <div class="project-info">
               <div>
@@ -75,33 +67,21 @@
           <article class="project-card">
             <div class="project-top"><span class="project-number">02 / DEVELOPER TOOLS</span><span class="project-arrow">↗</span></div>
             <div class="visual atlas-visual">
-              <div class="atlas-orbit orbit-a"></div>
-              <div class="atlas-orbit orbit-b"></div>
-              <div class="atlas-core">&lt;/&gt;</div>
-              <div class="atlas-node node-a">REPO</div>
-              <div class="atlas-node node-b">SEARCH</div>
-              <div class="atlas-node node-c">AI</div>
-              <div class="atlas-caption mono">UNDERSTAND THE WHOLE CODEBASE</div>
+              <img src="assets/code-atlas-photo.png" alt="Developer sketching connections between software modules in a notebook" loading="lazy">
             </div>
             <div class="project-info">
               <div>
                 <h3>Code Atlas AI</h3>
                 <p>Repository intelligence that turns natural-language questions into context-aware codebase answers.</p>
               </div>
-              <span class="project-year">2026 — NOW</span>
+              <span class="project-year">COMPLETED · 2026</span>
             </div>
             <div class="tags"><span>Python</span><span>FastAPI</span><span>PostgreSQL</span><span>Embeddings</span><span>Vector Search</span><span>LLMs</span></div>
           </article>
           <article class="project-card">
             <div class="project-top"><span class="project-number">03 / AGRI-TECH</span><span class="project-arrow">↗</span></div>
             <div class="visual plant-visual">
-              <div class="plant-sun"></div>
-              <div class="leaf leaf-a"></div>
-              <div class="leaf leaf-b"></div>
-              <div class="leaf leaf-c"></div>
-              <div class="plant-stem"></div>
-              <div class="plant-card mono"><span>LEAF ANALYSIS</span><b>HEALTHY</b><i>94% MODEL CONFIDENCE</i></div>
-              <div class="plant-caption">EARLY DETECTION<br>BETTER HARVESTS</div>
+              <img src="assets/plant-disease-photo.png" alt="Tomato leaves with early disease spots being photographed for analysis" loading="lazy">
             </div>
             <div class="project-info">
               <div>
@@ -181,6 +161,19 @@
           <div class="eyebrow">HAVE A ROLE OR IDEA? <span class="eyebrow-line"></span> LET’S TALK</div>
           <h2>Good work starts<br>with a <em>hello.</em></h2>
           <a class="contact-email" href="mailto:anmolmishra7545@gmail.com">anmolmishra7545@gmail.com <span>↗</span></a>
+          <div class="visitor-message">
+            <h3>Send Anmol a message</h3>
+            <form id="visitorMessageForm">
+              <label for="visitorName">Your name</label>
+              <input id="visitorName" name="name" autocomplete="name" required>
+              <label for="visitorId">Email or profile ID</label>
+              <input id="visitorId" name="visitorId" autocomplete="email" placeholder="Email, LinkedIn, or GitHub" required>
+              <label for="visitorNote">Message</label>
+              <textarea id="visitorNote" name="message" rows="4" required></textarea>
+              <button type="submit">Prepare message <span>↗</span></button>
+              <p id="visitorMessageStatus" aria-live="polite">Your email app will open. Review and send the message there.</p>
+            </form>
+          </div>
           <div class="contact-bottom"><span>NEW DELHI, INDIA</span><a href="tel:+919330069580">+91 93300 69580</a><span>OPEN TO OPPORTUNITIES</span></div>
         </div>
       </section>
@@ -196,8 +189,8 @@
       <div class="chat-intro">
         <span class="chat-kicker">RECRUITER QUICK CHAT</span>
         <h3>What would you<br>like to know?</h3>
-        <p>Ask about experience, projects, skills, education, or certifications.</p>
-        <div class="suggestions"><button>What experience does Anmol have?</button><button>Tell me about his AI projects</button><button>What technologies does he use?</button></div>
+        <p>Ask about experience, projects, skills, education, certifications, or profiles.</p>
+        <div class="suggestions"><button>What experience does Anmol have?</button><button>Tell me about his AI projects</button><button>What technologies does he use?</button><button>What are Anmol’s GitHub and LinkedIn IDs?</button></div>
       </div>
       <div class="chat-messages" id="chatMessages" aria-live="polite"></div>
       <form class="chat-form" id="chatForm"><input id="chatInput" autocomplete="off" placeholder="Ask a question…" aria-label="Ask a question"><button aria-label="Send message">↑</button></form>

@@ -6,8 +6,13 @@ const resumeFacts = [
   },
   {
     section: 'Contact',
-    text: 'Anmol can be reached at anmolmishra7545@gmail.com or +91 93300 69580. His resume includes GitHub and LinkedIn profiles but does not provide their URLs.',
-    terms: 'contact email phone reach connect github linkedin social',
+    text: 'Anmol can be reached at anmolmishra7545@gmail.com or +91 93300 69580.',
+    terms: 'contact email phone reach connect',
+  },
+  {
+    section: 'Profiles',
+    text: 'Anmol’s GitHub username is Anmol7545: https://github.com/Anmol7545. His LinkedIn profile is https://www.linkedin.com/in/anmolmishra7545/.',
+    terms: 'github git hub linkedin social profile account username user name id handle url link',
   },
   {
     section: 'Experience',
@@ -52,6 +57,7 @@ const chatCloseButton = document.getElementById('chatClose');
 const chatForm = document.getElementById('chatForm');
 const chatInput = document.getElementById('chatInput');
 const chatMessages = document.getElementById('chatMessages');
+const visitorMessageForm = document.getElementById('visitorMessageForm');
 
 const stopWords = /\b(what|tell|about|does|do|his|him|he|anmol|can|you|me|please|is|are|the|a|an|and|for|with|has|have|did|worked|know|more|describe|explain)\b/g;
 const synonyms = {
@@ -141,7 +147,7 @@ function retrieveResumeFacts(question) {
     .map((result) => result.fact);
 }
 
-function addMessage(text, role, sources = []) {
+function addMessage(text, role, sources = [], profileLinks = []) {
   const message = document.createElement('div');
   message.className = `message ${role}`;
   message.textContent = text;
@@ -152,11 +158,49 @@ function addMessage(text, role, sources = []) {
     message.append(sourceLabel);
   }
 
+  if (profileLinks.length > 0) {
+    const actions = document.createElement('div');
+    actions.className = 'profile-actions';
+
+    profileLinks.forEach(({ label, url }) => {
+      const link = document.createElement('a');
+      link.href = url;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      link.textContent = `Open ${label} profile ↗`;
+      actions.append(link);
+    });
+
+    message.append(actions);
+  }
+
   chatMessages.append(message);
   chatMessages.scrollTop = chatMessages.scrollHeight;
 }
 
 function answerQuestion(question) {
+  const lowerQuestion = question.toLowerCase();
+  const asksGitHub = /\b(github|git\s+hub|githud)\b/.test(lowerQuestion) &&
+    !/\b(project|repos?|repository|codebase|code atlas)\b/.test(lowerQuestion);
+  const asksLinkedIn = /\blinked\s?in\b/.test(lowerQuestion);
+
+  if (asksGitHub || asksLinkedIn) {
+    const profileLinks = [];
+    const profileDetails = [];
+
+    if (asksGitHub) {
+      profileDetails.push('GitHub: @Anmol7545. Would you like to see Anmol’s GitHub profile?');
+      profileLinks.push({ label: 'GitHub', url: 'https://github.com/Anmol7545' });
+    }
+    if (asksLinkedIn) {
+      profileDetails.push('LinkedIn ID: anmolmishra7545. Would you like to see Anmol’s LinkedIn profile?');
+      profileLinks.push({ label: 'LinkedIn', url: 'https://www.linkedin.com/in/anmolmishra7545/' });
+    }
+
+    addMessage(profileDetails.join('\n'), 'bot', ['Profiles'], profileLinks);
+    return;
+  }
+
   const matchingFacts = retrieveResumeFacts(question);
 
   if (matchingFacts.length === 0) {
@@ -206,4 +250,21 @@ chatForm.addEventListener('submit', (event) => {
 
 document.querySelectorAll('.suggestions button').forEach((button) => {
   button.addEventListener('click', () => submitQuestion(button.textContent));
+});
+
+visitorMessageForm.addEventListener('submit', (event) => {
+  event.preventDefault();
+
+  const formData = new FormData(visitorMessageForm);
+  const visitorName = formData.get('name').trim();
+  const visitorId = formData.get('visitorId').trim();
+  const visitorNote = formData.get('message').trim();
+  const subject = encodeURIComponent(`Portfolio message from ${visitorName}`);
+  const body = encodeURIComponent(
+    `Name: ${visitorName}\nEmail or profile ID: ${visitorId}\n\nMessage:\n${visitorNote}`,
+  );
+
+  document.getElementById('visitorMessageStatus').textContent =
+    'Your email app should open with the message ready. Review it and press Send.';
+  window.location.href = `mailto:anmolmishra7545@gmail.com?subject=${subject}&body=${body}`;
 });
